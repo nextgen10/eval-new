@@ -142,7 +142,7 @@ const getCustomTheme = (mode: 'light' | 'dark') => createTheme({
     error: { main: '#e11d48' },   // Rose 600
   },
   typography: {
-    fontFamily: '"Outfit", "Inter", sans-serif',
+    fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     h4: { fontWeight: 900, letterSpacing: '-0.04em', fontSize: '1.75rem' },
     h6: { fontWeight: 800, letterSpacing: '-0.02em', fontSize: '1rem' },
     overline: { fontWeight: 900, letterSpacing: '0.1em', fontSize: '0.6rem' },
