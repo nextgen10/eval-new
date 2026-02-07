@@ -25,7 +25,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({ title, value, color: initi
             animate={{ opacity: 1, y: 0 }}
             whileHover={{ y: -5 }}
             sx={{
-                pl: 2.5,
+                pl: 3,
                 pr: 2,
                 py: 2,
                 height: '100%',
@@ -51,7 +51,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({ title, value, color: initi
             }}
         >
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1.5 }}>
-                <Box sx={{ minWidth: 0 }}>
+                <Box sx={{ minWidth: 0, ml: 0.5 }}>
                     <Typography
                         variant="overline"
                         sx={{
@@ -110,7 +110,7 @@ export const GlassCard: React.FC<GlassCardProps> = ({ title, value, color: initi
                     {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 18 }) : icon}
                 </Avatar>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ml: 0.5 }}>
                 {trend && (
                     <Typography
                         variant="caption"

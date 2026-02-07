@@ -1476,7 +1476,7 @@ export default function EnterpriseDashboard() {
               ? 'rgba(15, 23, 42, 0.8)'
               : 'rgba(255, 255, 255, 0.9)',
             borderRadius: { xs: 4, md: 6 },
-            border: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(0, 0, 0, 0.15)',
+            border: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(255, 255, 255, 0.25)' : '1px solid rgba(0, 0, 0, 0.18)',
             boxShadow: (theme) => theme.palette.mode === 'dark' ? '0 8px 32px rgba(0, 0, 0, 0.5)' : '0 8px 32px rgba(0, 0, 0, 0.05)',
             overflow: 'hidden',
             '&::before': {
@@ -1543,7 +1543,7 @@ export default function EnterpriseDashboard() {
               p: 0.75,
               bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.3)' : '#f1f5f9',
               borderRadius: { xs: 4, md: 99 },
-              border: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(37, 99, 235, 0.6)' : '1px solid rgba(37, 99, 235, 0.4)',
+              border: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(37, 99, 235, 0.25)' : '1px solid rgba(37, 99, 235, 0.15)',
               boxShadow: (theme) => theme.palette.mode === 'dark' ? '0 0 10px rgba(37, 99, 235, 0.1), inset 0 0 10px rgba(37, 99, 235, 0.05)' : 'none'
             }}>
               {[
@@ -1712,7 +1712,7 @@ export default function EnterpriseDashboard() {
 
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'center' }, gap: 2, mb: 1 }}>
               <Box>
-                <Typography sx={{ fontWeight: 800, fontSize: { xs: '1.1rem', md: '1.25rem' }, letterSpacing: '-0.02em', mb: 0.5, color: 'text.primary' }}>
+                <Typography sx={{ fontWeight: 800, fontSize: { xs: '0.95rem', md: '1.1rem' }, letterSpacing: '-0.02em', mb: 0.5, color: 'text.primary' }}>
                   {activeView === 'insights' ? 'Production Intelligence' :
                     activeView === 'history' ? 'Historical Evaluations' :
                       activeView === 'drilldown' ? 'Scenario Metrics' :
@@ -2484,7 +2484,7 @@ export default function EnterpriseDashboard() {
 
 
                             <MetricExplanationCard
-                              title="Semantic Similarity (GT Alignment)"
+                              title="Answer Correctness (Semantic Similarity / GT Alignment)"
                               description="Measures the alignment between the bot's generated response and a known reference 'Ground Truth'."
                               details="Uses multi-dimensional word embeddings to calculate the cosine similarity between the generated and target responses."
                               example="The system Compares 'The sky is blue' vs 'The heavens are azure'. High similarity despite different wording."
@@ -2513,7 +2513,7 @@ export default function EnterpriseDashboard() {
                           <Grid size={{ xs: 12, md: 6 }} sx={{ height: '100%' }}>
                             <Paper sx={{ px: 2, py: 1.5, borderRadius: 2, bgcolor: 'background.paper', border: (theme) => `1px solid ${theme.palette.divider}`, boxShadow: (theme) => theme.palette.mode === 'dark' ? '0 0 30px rgba(37, 99, 235, 0.2)' : '0 10px 30px rgba(0, 0, 0, 0.05)', height: '100%', display: 'flex', flexDirection: 'column' }}>
                               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                                <Typography sx={{ fontWeight: 800, fontSize: '0.95rem', letterSpacing: '-0.01em' }}>Neural Engine Configuration</Typography>
+                                <Typography sx={{ fontWeight: 800, fontSize: '0.85rem', letterSpacing: '-0.01em' }}>Neural Engine Configuration</Typography>
                                 <FormControlLabel
                                   control={<Switch size="small" checked={config.expertMode} onChange={(e) => setConfig({ ...config, expertMode: e.target.checked })} />}
                                   label={<Typography variant="caption" sx={{ fontWeight: 700, fontSize: '0.65rem', color: config.expertMode ? 'primary.main' : 'text.secondary' }}>EXPERT</Typography>}
@@ -2738,7 +2738,7 @@ export default function EnterpriseDashboard() {
                               }
                             }}
                           >
-                            Apply Engine Settings
+                            Apply Settings
                           </Button>
                         </Box>
                       </Box>
@@ -3241,6 +3241,7 @@ const formatNum = (val: any, dec = 3) => safeVal(val).toFixed(dec);
 
 
 function SidebarItem({ icon, label, active, onClick }: any) {
+  const theme = useTheme();
   return (
     <ListItem disablePadding sx={{ mb: 0.5 }}>
       <ListItemButton
@@ -3250,7 +3251,7 @@ function SidebarItem({ icon, label, active, onClick }: any) {
           color: active ? '#2563eb' : 'text.secondary',
           bgcolor: active ? 'rgba(37, 99, 235, 0.08)' : 'transparent',
           '&:hover': {
-            bgcolor: active ? 'rgba(37, 99, 235, 0.12)' : (themeMode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'),
+            bgcolor: active ? 'rgba(37, 99, 235, 0.12)' : (theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'),
             color: active ? '#2563eb' : 'text.primary',
           }
         }}
