@@ -1490,16 +1490,14 @@ function EnterpriseDashboardContent() {
         <Suspense fallback={null}>
           <SearchParamsHandler onViewChange={handleViewChangeFromUrl} />
         </Suspense>
-        <Box className="main-ui-container" sx={{ display: 'flex', height: '100vh', overflow: 'hidden', bgcolor: 'background.default', color: 'text.primary' }}>
+        <Box className="main-ui-container" sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden', bgcolor: 'background.default', color: 'text.primary' }}>
 
           {/* Top Navigation Bar */}
           <Box sx={{
-            position: 'fixed',
-            top: { xs: 8, md: 24 },
-            left: { xs: 8, md: 24 },
-            width: { xs: 'calc(100vw - 16px)', md: 'calc(100vw - 48px)' },
-            minHeight: { xs: 'auto', md: 80 },
-            height: { xs: 'auto', md: 80 },
+            flexShrink: 0,
+            mx: { xs: 1, md: 3 },
+            mt: { xs: 1, md: 3 },
+            mb: 1,
             zIndex: 1200,
             px: { xs: 2, md: 3 },
             py: { xs: 1.5, md: 0 },
@@ -1516,6 +1514,7 @@ function EnterpriseDashboardContent() {
             border: (theme) => theme.palette.mode === 'dark' ? '1px solid rgba(255, 255, 255, 0.25)' : '1px solid rgba(0, 0, 0, 0.18)',
             boxShadow: (theme) => theme.palette.mode === 'dark' ? '0 8px 32px rgba(0, 0, 0, 0.5)' : '0 8px 32px rgba(0, 0, 0, 0.05)',
             overflow: 'hidden',
+            minHeight: { xs: 'auto', md: 80 },
             '&::before': {
               content: '""',
               position: 'absolute',
@@ -1736,12 +1735,10 @@ function EnterpriseDashboardContent() {
           {/* Main Content Area */}
           <Box component="main" sx={{
             width: '100%',
-            maxWidth: '100vw',
             flexGrow: 1,
-            pt: { xs: 35, sm: 25, md: 20, lg: 15 },
             px: { xs: 2, md: 3 },
-            pb: 4,
-            height: '100vh',
+            pb: 2,
+            pt: 2,
             overflow: 'hidden',
             display: 'flex',
             flexDirection: 'column'
@@ -1914,9 +1911,9 @@ function EnterpriseDashboardContent() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
-                  style={{ height: activeView === 'about' ? '100%' : 'auto' }}
+                  style={{ height: ['about', 'history', 'config'].includes(activeView) ? '100%' : 'auto' }}
                 >
-                  <Box sx={{ height: activeView === 'about' ? '100%' : 'auto' }}>
+                  <Box sx={{ height: ['about', 'history', 'config'].includes(activeView) ? '100%' : 'auto' }}>
                     {/* Dashboard View */}
                     {activeView === 'insights' && data && (
                       <Grid container spacing={2} columns={12}>
@@ -2217,8 +2214,8 @@ function EnterpriseDashboardContent() {
                     )}
 
                     {activeView === 'history' && (
-                      <Grid container spacing={3}>
-                        <Grid size={{ xs: 12 }}>
+                      <Grid container spacing={3} sx={{ height: '100%' }}>
+                        <Grid size={{ xs: 12 }} sx={{ height: '100%' }}>
                           <TableContainer
                             component={Paper}
                             sx={{
@@ -2226,7 +2223,7 @@ function EnterpriseDashboardContent() {
                               bgcolor: 'background.paper',
                               border: (theme) => `1px solid ${theme.palette.divider}`,
                               boxShadow: (theme) => theme.palette.mode === 'dark' ? '0 0 30px rgba(14, 165, 233, 0.35)' : '0 10px 30px rgba(0,0,0,0.05)',
-                              maxHeight: 'calc(100vh - 230px)',
+                              height: '100%',
                               overflowY: 'auto !important',
                               mb: 0,
                               '&::-webkit-scrollbar': { width: '8px' },
@@ -2388,7 +2385,7 @@ function EnterpriseDashboardContent() {
                     )}
 
                     {activeView === 'about' && (
-                      <Box sx={{ height: 'calc(100vh - 230px)', overflow: 'hidden', width: '100%', display: 'flex', gap: 3 }}>
+                      <Box sx={{ height: '100%', overflow: 'hidden', width: '100%', display: 'flex', gap: 3 }}>
                         <Box sx={{ width: 340, height: '100%', overflow: 'hidden', flexShrink: 0, pt: 2 }}>
                           <Paper sx={{
                             p: 4,
@@ -2597,7 +2594,7 @@ function EnterpriseDashboardContent() {
                     )}
 
                     {activeView === 'config' && (
-                      <Box sx={{ height: 'calc(100vh - 230px)', display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                      <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                         <Grid container spacing={1.5} sx={{ flexGrow: 1, minHeight: 0 }}>
                           {/* Left Column - Core Intelligence & RQS Weights */}
                           <Grid size={{ xs: 12, md: 6 }} sx={{ height: '100%' }}>
